@@ -1,0 +1,1 @@
+Employee: {id:13;fName:Ivan;lName:Durackiy;age:21;salary:3333;},
