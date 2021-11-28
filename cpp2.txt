@@ -1,1 +1,0 @@
- It was initially developed for the UNIX operating system.

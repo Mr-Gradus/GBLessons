@@ -1,1 +1,0 @@
-The C programming language was created by Bjarne Stroustrup.

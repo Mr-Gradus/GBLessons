@@ -16,11 +16,11 @@ public:
 	void setPower()
 	{
 		num1 = 4.13;
-		num2 = 2.00;
+		num2 = 2.22;
 	}
 	void Calculate()
 	{
-		cout << pow(num1,num2) << endl;
+		cout << num1 << " в степени " << num2 << " = " << pow(num1, num2) << endl;
 	}
 	
 };
@@ -48,15 +48,46 @@ public:
 
 	}
 
-	void print()
+	void print() // Переделать в отдельную функцию??
 	{
 		cout << "Red." << m_red << endl << "Green." << m_green << endl << "Blue." << m_blue << endl << "Alpha." << m_alpha << endl;
 	}
 };
 
+//=================Task_3=====================
+
+class Stack
+{
+private:
+	int Array[10];
+	int stackLength;
+public:
+	void reset();
+	
+	void push();
+
+	void pop();
+
+	void print();
+
+
+};
+
+Stack::Stack()
+{
+}
+
+Stack::~Stack()
+{
+}
+
+
+
 
 int main()
 {	
+	setlocale(0, "rus");
+
 	//=================Task_1=====================
 	cout << "===Task 1===" << endl;
 
@@ -67,7 +98,7 @@ int main()
 	//=================Task_2=====================
 	cout << "===Task 2===" << endl;
 
-	RGBA colors(1, 2, 3, 111);
+	RGBA colors(3, 4, 5, 6);
 	colors.print();
 	
 	return 0;

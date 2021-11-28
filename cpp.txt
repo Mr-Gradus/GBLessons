@@ -1,4 +1,0 @@
-The C programming language was created by Bjarne Stroustrup.
-
- It was initially developed for the UNIX operating system.
-
