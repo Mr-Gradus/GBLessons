@@ -144,10 +144,86 @@ int main()
 	//=================Task_3=====================
 	cout << endl << "==========Task 3==========" << ".\n" << endl;
 
+ 
+	/*
+	class Game { // класс с графической реализацие экрана игры
+	private:
+	
+	
+	public:
+
+	};
+	
+	class Animation : private Game { // не уверен но возможно анимацию карт в отдельный класс надо 
+	private:
 
 
+	public:
+
+	};
+	class Players {  // класс игроки
+	private:
 
 
+	public:
+
+	};
+	
+	class Dealer { //класс раздающий, AI
+	private:
+
+
+	public:
+
+	};
+	
+	class Table {  // класс стол информация про карты на столе, карты на руках у игроков - возможно это надо в отдельный класс
+	private:
+
+
+	public:
+
+	};
+	
+	class Deck  : private Table {  // класс колода
+	private:
+		string name; //название колоды если необходимо
+		int cards; //количество карт в колоде
+	public:
+	};
+	
+	class Rule { // правила игры
+	private:
+
+
+	public:
+
+	};
+
+	class Bet  : private Rule {  // класс содержащий инфу про ставки/деньги/очки
+	private:
+
+
+	public:
+
+	};
+
+	class Check  : private Rule{ // проверка количества очков, выигрыш проигрыш
+	private:
+
+
+	public:
+	};
+	
+	class Stat  : private Check {  // статистика игрока
+	private:
+
+
+	public:
+
+	};
+	*/
+	
 	return 0;
 }
 
