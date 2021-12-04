@@ -35,7 +35,7 @@ public:
 	}
 		
 	
-	//~Student() {}
+	~Student() {}
 
 	void print() const
 	{
@@ -50,28 +50,32 @@ int Student::count = 0;
 
 //=================Task_2=====================
 
-class RGBA
-{
-private:
-	uint8_t m_red = 0;
-	uint8_t m_green = 0;
-	uint8_t m_blue = 0;
-	uint8_t m_alpha = 255;
-public:
-	RGBA(int r, int g, int b, int a)
-	{
-		m_red = r;
-		m_green = g;
-		m_blue = b;
-		m_alpha = a;
-	}
+class Fruit {
+protected:
+	string name;
+	string color;
+	Fruit() {}
 
-	~RGBA()
-	{
 
-	}
-
+	~Fruit() {}
 };
+class Apple : private Fruit {
+public:
+	Apple() {}
+
+	string getName() const { return name; }
+	string getColor() const { return color; }
+	class Banana : private Fruit {
+		Banana() {}
+		string getName() const { return name; }
+		string getColor() const { return color; }
+
+		class GrannySmith : private Apple {
+
+		public:
+			GrannySmith() {}
+
+
 
 //=================Task_3=====================
 
