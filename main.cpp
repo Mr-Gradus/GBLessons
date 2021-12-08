@@ -106,34 +106,62 @@ using namespace std;
 		double numenator;
 		double denomenator;
 	public:
-		Fraction(double num, double den) : numenator(num), denomenator(den) {
-			if (den == 0)
-				cout << "Ошибка - знаменатель не может быть 0!!!" << endl;
+		Fraction(double num, double den) : numenator(num), denomenator(den) {}
 			
-		}
+			
 		
-		int getNum() const {
+		
+		double getNum() const {
 		return numenator;
 		}
-		int getDen() const {
+		double getDen() const {
 		return denomenator;
 		}
 		
-		
-		friend Fraction operator+ (const Fraction& n1, const Fraction& n2);
-		friend Fraction operator- (const Fraction& n1, const Fraction& n2);
-		friend Fraction operator* (const Fraction& n1, const Fraction& n2);
-		friend Fraction operator/ (const Fraction& n1, const Fraction& n2);
+		//friend Fraction operator+ (const Fraction& n1, const Fraction& n2);
+		//friend Fraction operator- (const Fraction& n1, const Fraction& n2);
+		//friend Fraction operator* (const Fraction& n1, const Fraction& n2);
+		//friend Fraction operator/ (const Fraction& n1, const Fraction& n2);
+		friend bool operator== (const Fraction& equ1, const Fraction& equ2);
+		friend bool operator!= (const Fraction& equ1, const Fraction& equ2);
+		friend bool operator< (const Fraction& les1, const Fraction& les2);
 	};
 
-	Fraction operator+ (Fraction& n1, Fraction& n2)	{
-		return Fraction(n1.numenator * n2.denomenator + n2.numenator * n1.denomenator, n1.denomenator * n2.denomenator);
+	Fraction operator+ (Fraction& add1, Fraction& add2)	{
+		return Fraction(add1.getNum() * add2.getDen() + add2.getNum() * add1.getDen(), add1.getDen() * add2.getDen());
+	}
+	
+	Fraction operator- (Fraction& sub1, Fraction& sub2) {
+		return Fraction(sub1.getNum() * sub2.getDen() - sub2.getNum() * sub1.getDen(), sub1.getDen() * sub2.getDen());
+	}
+	
+	Fraction operator* (Fraction& mul1, Fraction& mul2) {
+		return Fraction(mul1.getNum() * mul2.getNum(), mul1.getDen() * mul2.getDen());
 	}
 
-	Fraction operator- (Fraction& n1, Fraction& n2) {
-		return Fraction(n1.numenator * n2.denomenator + n2.numenator * n1.denomenator, n1.denomenator * n2.denomenator);
+	Fraction operator/ (Fraction& div1, Fraction& div2) {
+		return Fraction(div1.getNum() * div2.getDen(), div1.getDen() * div2.getNum());
 	}
 	/*
+	Fraction operator- (Fraction& una1, Fraction& una2) {
+		return Fraction(-una1.getNum(), -una1.getDen());
+	}
+	*/
+
+	bool operator== (Fraction& equ1, Fraction& equ2) {
+		return (equ1.numenator / equ1.denomenator == equ2.numenator / equ2.denomenator);
+	}
+	
+	bool operator< (Fraction& les1, Fraction& les2) {
+		return (les1.numenator / les1.denomenator < les2.numenator / les2.denomenator);
+	}
+
+	bool operator> (Fraction& mor1, Fraction& mor2) {
+		return (mor1.numenator / mor1.denomenator > mor2.numenator / mor2.denomenator);
+	}
+		
+		
+		/*
 	class Fraction {
 	private:
 		int number;
@@ -188,9 +216,48 @@ int main()
 	//=================Task_3=====================
 	cout << endl << "==========Task 3==========" << ".\n" << endl;
 
-	Fraction n1(1,5), n2(3,4);
-	Fraction res = n1 + n2;
-	cout << res.getNum() << "/" << res.getDen() << endl;
+	Fraction add1(1,2), add2(1,4);
+	Fraction add = add1 + add2;
+	cout << add.getNum() << "/" << add.getDen() << endl;
+	
+	Fraction sub1(1,2), sub2(1,4);
+	Fraction sub = sub1 - sub2;
+	cout << sub.getNum() << "/" << sub.getDen() << endl;
+	
+	Fraction mul1(1,4), mul2(1,4);
+	Fraction mul = mul1 * mul2;
+	cout << mul.getNum() << "/" << mul.getDen() << endl;
+	
+	Fraction div1(1,2), div2(1,4);
+	Fraction div = div1 / div2;
+	cout << div.getNum() << "/" << div.getDen() << endl;
+	/*
+	Fraction una1(1, 2), una2(1, 4);
+	Fraction una = una1 - una2;
+	cout << una.getNum() << "/" << una.getDen() << endl;
+	*/
+	
+	Fraction equ1(1, 2), equ2(1, 3);
+	if ((equ1.numenator / equ1.denomenator) == (equ2.numenator / equ2.denomenator))
+		cout << equ1.numenator << "/" << equ1.denomenator << " Равно " << equ2.numenator << "/" << equ2.denomenator << endl;
+
+	if ((equ1.numenator / equ1.denomenator) != (equ2.numenator / equ2.denomenator))
+		cout << equ1.numenator << "/" << equ1.denomenator << " Не равно " << equ2.numenator << "/" << equ2.denomenator << endl;
+	
+	Fraction les1(1, 2), les2(1, 3);
+	if ((les1.numenator / les1.denomenator) < (les2.numenator / les2.denomenator))
+		cout << les1.numenator << "/" << les1.denomenator << " Меньше " << les2.numenator << "/" << les2.denomenator << endl;
+
+	if ((les1.numenator / les1.denomenator) >= (les2.numenator / les2.denomenator))
+		cout << les1.numenator << "/" << les1.denomenator << " Больше или равно " << les2.numenator << "/" << les2.denomenator << endl;
+	
+	Fraction mor1(1, 2), mor2(1, 3);
+	if ((mor1.numenator / mor1.denomenator) > (mor2.numenator / mor2.denomenator))
+		cout << mor1.numenator << "/" << mor1.denomenator << " Больше " << mor2.numenator << "/" << mor2.denomenator << endl;
+
+	if ((mor1.numenator / mor1.denomenator) <= (mor2.numenator / mor2.denomenator))
+		cout << mor1.numenator << "/" << mor1.denomenator << " Меньше или равно " << mor2.numenator << "/" << mor2.denomenator << endl;
+	
 	return 0;
 }
 
