@@ -1,140 +1,196 @@
 ﻿#include <iostream>
 #include <locale>
-#include <cmath>
-//#include <cstdint>
-#include <cassert>
+#include <string>
 
 using namespace std;
+
 //=================Task_1=====================
 
-class Power 
-{
-private:
-	double num1;
-	double num2;
+	class Figure 	{
+	public:
+	Figure () {}
+	virtual ~Figure() {};
+	virtual void area() const = 0;
 
-public:
-	void setPower()
-	{
-		num1 = 4.13;
-		num2 = 2.22;
-	}
-	void Calculate()
-	{
-		cout << num1 << " в степени " << num2 << " = " << pow(num1, num2) << endl;
-	}
-	
-};
+	};
+
+	class Parallelogram : public Figure {
+	//protected:
+
+	public:
+		Parallelogram () {}
+		void area() const override {
+			cout << "Параллелограм S = a * h" << endl;
+		}
+	};
+
+	class Circle : public Figure {
+	//private:
+
+	public:
+		Circle () {}
+		void area() const override {
+			cout << "Круг S = piR^" << endl;
+		}
+	};
+
+	class Rectangle : private Parallelogram {
+	//private:
+
+	public:
+		Rectangle () {}
+		void area() const override {
+			cout << "Прямоугольник S = a * b" << endl;
+		}
+	};
+
+	class Square : private Parallelogram {
+	//private:
+
+	public:
+		Square () {}
+		void area() const override {
+			cout << "Квадрат S = a^" << endl;
+		}
+	};
+
+	class Rhombus : private Parallelogram {
+	//private:
+
+	public:
+		Rhombus () {}
+		void area() const override {
+			cout << "Ромб S = a^ * sin A" << endl;
+		}
+	};
 
 //=================Task_2=====================
 
-class RGBA
-{
-private:
-	uint8_t m_red = 0;
-	uint8_t m_green = 0;
-	uint8_t m_blue = 0;
-	uint8_t m_alpha = 255;
-public:
-	RGBA(int r, int g, int b, int a)
-	{
-		m_red = r;
-		m_green = g;
-		m_blue = b;
-		m_alpha = a;
-	}
+	class Car {
+	protected:
+		string company;
+		string model;
+	public:
+		Car() {}
+		
+		/*Car(string company, string model) {
+			cout << company << "+++" << model << endl;
+		}*/
+	};
 
-	~RGBA()
-	{
+	class PassengerCar : virtual public Car {
+	public:
+		PassengerCar(string c, string m) : Car() {
+			cout << c << "*" << m << endl;
+		}
+	};
 
-	}
+	class Bus : virtual public Car {
+	public:
+		Bus(string c, string m) : Car() {
+			cout << c << "=" << m << endl;
+		}
+	};
 
-	void print() // Переделать в отдельную функцию??
-	{
-		cout << "Red." << m_red << endl << "Green." << m_green << endl << "Blue." << m_blue << endl << "Alpha." << m_alpha << endl;
-	}
-};
+	class Minivan : public PassengerCar, public Bus {
+	public:
+		Minivan(string c, string m) : PassengerCar(c,m), Bus(c,m) {
+			cout << c << "-" << m << endl;
+		}
+	};
 
 //=================Task_3=====================
 
-class Stack
-{
-private:
-	int m_array[10];
-	int m_length;
-public:
-	void reset()
-	{
-		m_length = 0;
-		for (int i = 0; i < 10; i++)
-			m_array[i] = 0;
+	class Fraction {
+	public:
+		double numenator;
+		double denomenator;
+	public:
+		Fraction(double num, double den) : numenator(num), denomenator(den) {
+			if (den == 0)
+				cout << "Ошибка - знаменатель не может быть 0!!!" << endl;
+			
+		}
+		
+		int getNum() const {
+		return numenator;
+		}
+		int getDen() const {
+		return denomenator;
+		}
+		
+		
+		friend Fraction operator+ (const Fraction& n1, const Fraction& n2);
+		friend Fraction operator- (const Fraction& n1, const Fraction& n2);
+		friend Fraction operator* (const Fraction& n1, const Fraction& n2);
+		friend Fraction operator/ (const Fraction& n1, const Fraction& n2);
+	};
+
+	Fraction operator+ (Fraction& n1, Fraction& n2)	{
+		return Fraction(n1.numenator * n2.denomenator + n2.numenator * n1.denomenator, n1.denomenator * n2.denomenator);
 	}
-	bool push(int cell)
-	{
-		if (m_length == 10)
-			return false;
 
-		else (m_array[m_length++] = cell);
-			return true;
+	Fraction operator- (Fraction& n1, Fraction& n2) {
+		return Fraction(n1.numenator * n2.denomenator + n2.numenator * n1.denomenator, n1.denomenator * n2.denomenator);
 	}
+	/*
+	class Fraction {
+	private:
+		int number;
+	public:
+		Fraction(int num) : number(num) {}
+		int getNum() const {
+			return number;
+		}
+		friend Fraction operator+ (const Fraction& n1, const Fraction& n2);
+	};
 
-	int pop()
-	{
-		assert (m_length > 0);
-
-		return m_array[--m_length];
+	Fraction operator+ (const Fraction& n1, const Fraction& n2) {
+		return Fraction(n1.number + n2.number);
 	}
-
-	void print()
-	{
-		cout << "( ";
-		for (int i = 0; i < m_length; i++)
-			cout << m_array[i] << ' ';
-		cout << ")" << endl;
-	}
-	
-};
-
-
+	*/
 
 
 int main()
 {	
-	setlocale(0, "rus");
+	{
+		setlocale(0, "rus");
 
-	//=================Task_1=====================
-	cout << "===Task 1===" << endl;
+		//=================Task_1=================
 
-	Power sum;
-	sum.setPower();
-	sum.Calculate();
-	
-	//=================Task_2=====================
-	
-	cout << endl << "===Task 2===" << endl;
+		cout << "==========Task 1==========" << ".\n" << endl;
 
-	RGBA colors(3, 4, 5, 6);
-	colors.print();
-	
+		Parallelogram parallelogram;
+		parallelogram.area();
+
+		Circle circle;
+		circle.area();
+
+		Rectangle rectangle;
+		rectangle.area();
+
+		Square square;
+		square.area();
+
+		Rhombus rhombus;
+		rhombus.area();
+
+		//=================Task_2=====================
+
+		cout << endl << "==========Task 2==========" << ".\n" << endl;
+
+
+		PassengerCar sedan("Audi", "A4");
+		Bus bus("МАЗ", "105");
+		Minivan car("VW", "Multivan"); //обращается к обоим базовым классам, а если сделать конструктор с данными к классу Car то и к нему 
+
+	}
 	//=================Task_3=====================
-	cout << endl << "===Task 3===" << endl;
+	cout << endl << "==========Task 3==========" << ".\n" << endl;
 
-	Stack stack;
-	stack.reset();
-	stack.print();
-	
-	stack.push(3);
-	stack.push(7);
-	stack.push(5);
-	stack.print();
-	
-	stack.pop();
-	stack.print();
-
-	stack.pop();
-	stack.pop();
-	stack.print();
-
+	Fraction n1(1,5), n2(3,4);
+	Fraction res = n1 + n2;
+	cout << res.getNum() << "/" << res.getDen() << endl;
 	return 0;
 }
 
