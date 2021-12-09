@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <locale>
 #include <string>
+#include <cassert>
 
 using namespace std;
 
@@ -128,18 +129,22 @@ using namespace std;
 	};
 
 	Fraction operator+ (Fraction& add1, Fraction& add2)	{
+		assert(add1.getDen() != 0 && add2.getDen() != 0);
 		return Fraction(add1.getNum() * add2.getDen() + add2.getNum() * add1.getDen(), add1.getDen() * add2.getDen());
 	}
 	
 	Fraction operator- (Fraction& sub1, Fraction& sub2) {
+		assert(sub1.getDen() != 0 && sub2.getDen() != 0);
 		return Fraction(sub1.getNum() * sub2.getDen() - sub2.getNum() * sub1.getDen(), sub1.getDen() * sub2.getDen());
 	}
 	
 	Fraction operator* (Fraction& mul1, Fraction& mul2) {
+		assert(mul1.getDen() != 0 && mul2.getDen() != 0);
 		return Fraction(mul1.getNum() * mul2.getNum(), mul1.getDen() * mul2.getDen());
 	}
 
 	Fraction operator/ (Fraction& div1, Fraction& div2) {
+		assert(div1.getDen() != 0 && div2.getDen() != 0);
 		return Fraction(div1.getNum() * div2.getDen(), div1.getDen() * div2.getNum());
 	}
 	/*
@@ -149,39 +154,25 @@ using namespace std;
 	*/
 
 	bool operator== (Fraction& equ1, Fraction& equ2) {
+		assert(equ1.getDen() != 0 && equ2.getDen() != 0);
 		return (equ1.numenator / equ1.denomenator == equ2.numenator / equ2.denomenator);
 	}
 	
 	bool operator< (Fraction& les1, Fraction& les2) {
+		assert(les1.getDen() != 0 && les2.getDen() != 0);
 		return (les1.numenator / les1.denomenator < les2.numenator / les2.denomenator);
 	}
 
 	bool operator> (Fraction& mor1, Fraction& mor2) {
+		assert(mor1.getDen() != 0 && mor2.getDen() != 0);
 		return (mor1.numenator / mor1.denomenator > mor2.numenator / mor2.denomenator);
 	}
 		
-		
-		/*
-	class Fraction {
-	private:
-		int number;
-	public:
-		Fraction(int num) : number(num) {}
-		int getNum() const {
-			return number;
-		}
-		friend Fraction operator+ (const Fraction& n1, const Fraction& n2);
-	};
-
-	Fraction operator+ (const Fraction& n1, const Fraction& n2) {
-		return Fraction(n1.number + n2.number);
-	}
-	*/
-
+	
 
 int main()
 {	
-	{
+	
 		setlocale(0, "rus");
 
 		//=================Task_1=================
@@ -212,9 +203,10 @@ int main()
 		Bus bus("МАЗ", "105");
 		Minivan car("VW", "Multivan"); //обращается к обоим базовым классам, а если сделать конструктор с данными к классу Car то и к нему 
 
-	}
+	
 	//=================Task_3=====================
 	cout << endl << "==========Task 3==========" << ".\n" << endl;
+
 
 	Fraction add1(1,2), add2(1,4);
 	Fraction add = add1 + add2;
