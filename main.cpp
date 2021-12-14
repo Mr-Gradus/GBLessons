@@ -120,7 +120,7 @@ using namespace std;
 		}
 		
 		//friend Fraction operator+ (const Fraction& n1, const Fraction& n2);
-		//friend Fraction operator- (const Fraction& n1, const Fraction& n2);
+		friend Fraction operator- (const Fraction& una1, const Fraction& una2);
 		//friend Fraction operator* (const Fraction& n1, const Fraction& n2);
 		//friend Fraction operator/ (const Fraction& n1, const Fraction& n2);
 		friend bool operator== (const Fraction& equ1, const Fraction& equ2);
@@ -149,7 +149,7 @@ using namespace std;
 	}
 	/*
 	Fraction operator- (Fraction& una1, Fraction& una2) {
-		return Fraction(-una1.getNum(), -una1.getDen());
+		return Fraction(-una1.getNum(), una1.getDen());
 	}
 	*/
 
@@ -167,7 +167,10 @@ using namespace std;
 		assert(mor1.getDen() != 0 && mor2.getDen() != 0);
 		return (mor1.numenator / mor1.denomenator > mor2.numenator / mor2.denomenator);
 	}
-		
+	int operator- (Fraction& una1, Fraction& una2) {
+		//assert(una1.denomenator() != 0 && una2.denomenator() != 0);
+		return (-una1.numenator, -una1.denomenator);
+	}
 	
 
 int main()
@@ -223,11 +226,11 @@ int main()
 	Fraction div1(1,2), div2(1,4);
 	Fraction div = div1 / div2;
 	cout << div.getNum() << "/" << div.getDen() << endl;
-	/*
+	
 	Fraction una1(1, 2), una2(1, 4);
-	Fraction una = una1 - una2;
-	cout << una.getNum() << "/" << una.getDen() << endl;
-	*/
+	//Fraction una = 
+	cout << una1.numenator << "/" << una1.denomenator << endl;
+	
 	
 	Fraction equ1(1, 2), equ2(1, 3);
 	if ((equ1.numenator / equ1.denomenator) == (equ2.numenator / equ2.denomenator))
